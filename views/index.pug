@@ -1,0 +1,42 @@
+extends flexLayout.pug
+
+block header
+	if login === true
+		include layoutIn.pug
+	else
+		include layoutOut.pug
+
+block content
+	each value, indx in users
+		.card#external-card
+			.card-block
+				.media
+					img.d-flex.mr-3.image-fluid#image(src='../'+value.image.path style="max-width: 100%; height: auto;" width="100" height="100")
+					.media-body
+						h4.mt-0 !{value.name}
+						h5 Classes and Subjects:
+						each cas, i in value.classesAndSubjects
+							div.m-3(style="display: inline-block;")
+								span.p-1#cas !{cas}
+						br
+						a(target='_blank' href='/'+value._id+'/profile') More information
+						if login === true
+							a.ml-4.messageTag(data-toggle="modal" data-target="#messageModal" href='javascript:;' data-toid=value._id data-fromid=user._id)
+								i.fa.fa-envelope(aria-hidden="true")
+
+	.modal#messageModal(role="dialog" aria-hidden="true")
+		.modal-dialog(role="document")
+			.modal-content
+				.modal-body
+					.form
+						.form-group
+							label#messageLabel(for="message-text").form-control-label Message:
+							textarea.form-control#messageText
+					.modal-footer
+						button(type="button" class="btn btn-secondary" data-dismiss="modal") Close
+						button#submitButton(type="button" class="btn btn-primary") Send message
+block scripts
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+	script(src="../public/indexScript.js")
+
+							

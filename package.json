@@ -1,0 +1,27 @@
+{
+  "name": "tutor_plus",
+  "version": "1.0.0",
+  "description": "It's a online platform helping students find great home tutors",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nabila Ahmed",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "express-flash": "git://github.com/RGBboy/express-flash.git",
+    "express-recaptcha": "^2.1.0",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.1",
+    "fs": "0.0.1-security",
+    "mongoose": "^4.11.1",
+    "multer": "^1.3.0",
+    "pug": "^2.0.0-rc.2"
+  }
+}

@@ -1,0 +1,49 @@
+extends flexLayout.pug
+
+block links
+	link(rel="stylesheet" href="../../public/font-awesome-4.7.0/css/font-awesome.min.css")
+
+block header
+	include layoutIn.pug
+
+block content
+	each value, i in user.messages[indx].body
+		.card
+			.card-block
+				.media
+					if value.from === 1
+						a(href='/'+user.messages[indx].user1._id+'/profile')
+							img.d-flex.mr-3.image-fluid(src='../../'+user.messages[indx].user1.image.path style="max-width: 100%; height: auto;" width="50" height="50")
+						.media-body
+							small !{value.date.toDateString()}
+							p !{value.text}
+					else
+						a(href='/'+user.messages[indx].user2._id+'/profile')
+							img.d-flex.mr-3.image-fluid(src='../../'+user.messages[indx].user2.image.path style="max-width: 100%; height: auto;" width="50" height="50")
+						.media-body
+							small !{value.date.toDateString()}
+							p !{value.text}
+	if user._id.toString() === user.messages[indx].user1._id.toString()
+		a.mt-4.messageTag(data-toggle="modal" data-target="#messageModal" href='javascript:;' data-toid=user.messages[indx].user2._id data-fromid=user.messages[indx].user1._id)
+			i.fa.fa-pencil-square-o.fa-2x(aria-hidden="true")
+	else
+		a.mt-4.messageTag(data-toggle="modal" data-target="#messageModal" href='javascript:;' data-toid=user.messages[indx].user1._id data-fromid=user.messages[indx].user2._id)
+			i.fa.fa-pencil-square-o.fa-2x(aria-hidden="true")
+
+	.modal#messageModal(role="dialog" aria-hidden="true")
+		.modal-dialog(role="document")
+			.modal-content
+				.modal-body
+					.form
+						.form-group
+							label#messageLabel(for="message-text").form-control-label Message:
+							textarea.form-control#messageText
+					.modal-footer
+						button(type="button" class="btn btn-secondary" data-dismiss="modal") Close
+						button#submitButton(type="button" class="btn btn-primary") Send message
+block scripts
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+	script(src="../../public/historyScript.js")
+
+
+							

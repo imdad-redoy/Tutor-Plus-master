@@ -1,0 +1,72 @@
+extends flexLayout.pug
+
+block links
+	link(href="../public/profileStyle.css", rel='stylesheet')
+
+block header
+	include layoutOut.pug
+
+block content
+	.card
+		.card-block
+			img.d-flex.mr-3.image-fluid#image(src='../'+user.image.path style="max-width: 100%; height: auto;" width="100" height="100")
+	.card
+		.card-block
+			p <b>Name:</b>		!{user.name}
+			p <b>Email:</b>		!{user.email}
+	
+	if user.status === "teacher"
+		.card
+			.card-block
+				p <b>Classes and Subjects:</b>
+				ul#classesAndSubjectsList
+					each value, index in user.classesAndSubjects
+						li !{value}
+		.card
+			.card-block
+				p <b>Educational Background:</b>
+				ul#educationalBackgroundList
+					each value, index in user.educationalBackground
+						li !{value}
+		.card
+			.card-block
+				p <b>Experiences:</b>
+				ul#experiencesList
+					each value, index in user.experiences
+						li !{value}
+		.card
+			.card-block
+				p <b>Times:</b>
+				ul#timesList
+					each value, index in user.times
+						li !{value}
+		.card
+			.card-block
+				p <b>Contact Number:</b>
+				ul#contactNumbersList
+					each value, index in user.contactNumbers
+						li !{value}
+		.card
+			.card-block
+				p <b>Current Address:</b>
+				p.ml-4#currentAddress !{user.currentAddress}
+		.card
+			.card-block
+				p <b>Awards and Accomplishments:</b>
+				ul#awardsAndAccomplishmentsList
+					each value, index in user.awardsAndAccomplishments
+						li !{value}
+		.card
+			.card-block
+				p <b>Scan Copy of Certificates:</b>
+				ul#certificatesList
+					each value, index in user.certificates
+						li 
+							a(href = '/download/'+value.path) !{value.name}
+		.card
+			.card-block
+				p <b>Sample Resources:</b>
+				ul#sampleResourcesList
+					each value, index in user.sampleResources
+						li 
+							a(href = '/download/'+value.path) !{value.name}

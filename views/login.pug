@@ -1,0 +1,21 @@
+extends flexLayout.pug
+
+block header
+
+block content
+	.container(style="margin-top:10rem;")
+		.row.justify-content-center
+			.col-4.text-center
+				h3 Tutor Plus
+		.row.justify-content-center
+			.col-4
+				.card.text-center(style="width: 20rem;")
+					.card-block
+						h4.card-title Login
+						form(method="post" action="/login")
+							.form-group
+								input(type="text" name="email" placeholder="Email" required).form-control
+							.form-group
+								input.mb-3(type="password" name="password" placeholder="Password" required).form-control
+							.form-group
+								input.btn.btn-primary(type="submit", value="Login")

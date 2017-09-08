@@ -1,0 +1,22 @@
+extends flexLayout.pug
+
+block links
+	link(href="../public/messageStyle.css", rel='stylesheet')
+
+block header
+	include layoutIn.pug
+
+block content
+	each value, indx in user.messages.reverse()
+		a#messageAnchor(href="/message/"+user._id+'/'+value._id)
+			.card
+				.card-block
+					.media
+						if (value.user1._id.toString() === user._id.toString())
+							img.d-flex.mr-3.image-fluid(src='../'+value.user2.image.path style="max-width: 100%; height: auto;" width="50" height="50")
+						else
+							img.d-flex.mr-3.image-fluid(src='../'+value.user1.image.path style="max-width: 100%; height: auto;" width="50" height="50")
+						.media-body
+							p !{value.body[value.body.length-1].text.substr(0, 100)}
+
+							

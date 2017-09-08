@@ -1,0 +1,29 @@
+extends flexLayout.pug
+
+block header
+
+block content
+	.container(style="margin-top:5rem;")
+		.row.justify-content-center
+			.col-4.text-center
+				h3 Tutor Plus
+		.row.justify-content-center
+			.col-4
+				.card.text-center(style="width: 20rem;")
+					.card-block
+						h4.card-title Signup
+						form(method="post" action="/signup")
+							.form-group
+								input(type="text" name="name" placeholder="Name" required).form-control
+							.form-group
+								input(type="email" name="email" placeholder="Email" required).form-control
+							.form-group
+								input(type="password" name="password" placeholder="Password" required minlength="6")#password.form-control
+							.form-group
+								input(type="password" name="repassword" placeholder="Retype Password" required)#repassword.form-control
+							.form-group
+								input.btn.btn-primary(type="submit" value="Signup")
+
+block scripts
+	script(src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js")
+	script(src="./../public/signupScript.js")
